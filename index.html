@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>revuersi</title>
+  <style>
+    circle{
+    fill: rgb(66, 66, 66);
+    transition: all 0.7s;
+    stroke: rgb(66, 66, 66);
+    stroke-width: 5px;
+    }
+    .active{
+    fill: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <svg viewbox="0 0 500 500" width="500" height="500">
+      <stone :stone="stone" :key="stone.id" v-for="stone in stones" ></stone>
+    </svg>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script>
+    
+    Vue.component('stone', {
+    props: ['stone'],
+    data: function () {
+      return {
+        width:500/8
+      }
+    },
+    computed: {
+      calcX: function () {
+        return (this.width/2)
+              +(this.width*this.stone.x);
+      },
+      calcY: function () {
+        return (this.width/2)
+              +(this.width*this.stone.y);
+      }
+    },
+    template: `
+      <circle 
+        :r="width/2.3" 
+        :cx="calcX" 
+        :cy="calcY"
+        v-on:click="stone.active=!stone.active"
+        v-bind:class="{ active: stone.active}" 
+        ></circle>
+    `
+    });
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        stones:[],
+      }
+    });
+    var key=0;
+    for(var x=0;x<8;x++){
+      for(var y=0;y<8;y++){
+        var stone={
+          active:false,
+          id:key,
+          x:x,
+          y:y,
+          };
+        vm.stones.push(stone);
+        key++;
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>
