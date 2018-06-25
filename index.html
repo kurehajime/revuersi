@@ -8,13 +8,21 @@
   <title>revuersi</title>
   <style>
     circle{
-    fill: rgb(66, 66, 66);
     transition: all 0.7s;
-    stroke: rgb(66, 66, 66);
     stroke-width: 5px;
+    fill: rgb(0, 0, 0,0);
     }
-    .active{
-    fill: white;
+    .cell{
+    fill: green;
+    stroke: seagreen;
+    }
+    .white{
+    fill: rgb(255,255,255);;
+    stroke: rgb(222,222,222);;
+    }
+    .black{
+    fill: rgb(0,0,0);
+    stroke: rgb(33,33,33);
     }
   </style>
 </head>
@@ -37,22 +45,33 @@
     },
     computed: {
       calcX: function () {
-        return (this.width/2)
-              +(this.width*this.stone.x);
+        return (this.width*this.stone.x);
       },
       calcY: function () {
-        return (this.width/2)
-              +(this.width*this.stone.y);
+        return (this.width*this.stone.y);
+      },
+      stateClass: function () {
+        return this.stone.state==1?"white":"black";
       }
     },
     template: `
+    <g
+      v-on:click="stone.state=-1*stone.state"
+    >
+      <rect 
+        :x="calcX" 
+        :y="calcY" 
+        :width="width" 
+        :height="width"
+        class="cell"
+        />
       <circle 
-        :r="width/2.3" 
-        :cx="calcX" 
-        :cy="calcY"
-        v-on:click="stone.active=!stone.active"
-        v-bind:class="{ active: stone.active}" 
-        ></circle>
+        :r="width/2.6" 
+        :cx="(this.width/2)+calcX" 
+        :cy="(this.width/2)+calcY"
+        v-bind:class="stateClass" 
+        />
+    </g>
     `
     });
     var vm = new Vue({
@@ -65,10 +84,10 @@
     for(var x=0;x<8;x++){
       for(var y=0;y<8;y++){
         var stone={
-          active:false,
           id:key,
           x:x,
           y:y,
+          state:1,
           };
         vm.stones.push(stone);
         key++;
