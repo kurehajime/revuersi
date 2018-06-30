@@ -98,6 +98,8 @@
             data: {
                 stones: [],
                 turn:1,
+                white_score:0,
+                black_score:0,
             }
         });
         let key=0;
@@ -138,6 +140,8 @@
 
     function render(state){
         let stones=[];
+        let white=0;
+        let black=0;
         for (let i = 0; i < state.map.length; i++) {
             let x = (i % COL) | 0;
             let y = (i / COL) | 0;
@@ -150,8 +154,16 @@
               canPut:canPut,
               };
               stones.push(stone);
+            if(state.map[i]==1){
+                white++;
+            }
+            if(state.map[i]==-1){
+                black++;
+            }
         }
         vm.stones=stones;
         vm.turn=state.turn==1?"白のターンです":"黒のターンです"
+        vm.white_score=('00' + white).slice(-2);
+        vm.black_score=('00' + black).slice(-2);
     }
 })((this || 0).self || global);
