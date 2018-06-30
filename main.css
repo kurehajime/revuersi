@@ -32,6 +32,18 @@
         filter: hue-rotate(360deg);
     }
 }
+#title{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    margin: 10px;
+    font-size: 100px;
+    z-index: -1;
+    font-weight: 900;
+    font-family: 'Teko', sans-serif;
+    color: rgb(0, 0, 0,0.1);
+}
+
 #turn{
     position: absolute;
     top: 10%;
