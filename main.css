@@ -11,7 +11,7 @@
     background-size: 50px 50px;
 }
 
-#app {
+#board {
     position: absolute;
     top: 0px;
     right: 0px;
@@ -31,6 +31,17 @@
     100% {
         filter: hue-rotate(360deg);
     }
+}
+#turn{
+    position: absolute;
+    top: 10%;
+    right: 0%;
+    margin: 10px;
+    font-size: 50px;
+    z-index: -1;
+    font-weight: 900;
+    color: rgb(0, 0, 0,0.1);
+    transform: rotate(30deg);
 }
 .cell{
     fill: seagreen;

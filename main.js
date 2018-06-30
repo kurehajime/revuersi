@@ -123,7 +123,7 @@
                 state.turn = -1 * state.turn;
                 state.revision += 1;
                 render(state);
-            }, 1200);
+            }, 2000);
 
         }
     }
@@ -142,5 +142,6 @@
               stones.push(stone);
         }
         vm.stones=stones;
+        vm.turn=state.turn==1?"白のターンです":"黒のターンです"
     }
 })((this || 0).self || global);

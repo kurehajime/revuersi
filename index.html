@@ -13,9 +13,12 @@
 <body>
   <canvas id="back"></canvas>
   <div id="app">
-    <svg viewbox="0 0 500 500" width="500" height="500">
-      <stone :stone="stone" :key="stone.id" v-for="stone in stones" ></stone>
-    </svg>
+    <div id="board">
+        <svg viewbox="0 0 500 500" width="500" height="500">
+            <stone :stone="stone" :key="stone.id" v-for="stone in stones" ></stone>
+          </svg>
+    </div>
+    <div id="turn">{{turn}}</div>
   </div>
   <script>
     Game.initGame();
