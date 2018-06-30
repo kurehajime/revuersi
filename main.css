@@ -43,6 +43,15 @@
     font-family: sans-serif;
     color: rgb(0, 0, 0,0.5);
     transform: rotate(30deg);
+    animation: rote 30s infinite alternate;
+}
+@keyframes rote {
+    0% {
+        transform: rotate(30deg);
+    }
+    100% {
+        transform: rotate(20deg);
+    }
 }
 .cell{
     fill: seagreen;
