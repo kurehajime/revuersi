@@ -56,11 +56,11 @@
     position: absolute;
     top: 10%;
     right: 0%;
-    margin: 10px;
-    font-size: 50px;
+    margin: 20px;
+    font-size: 160px;
     z-index: -1;
     font-weight: 900;
-    font-family: sans-serif;
+    font-family: 'Teko', sans-serif;
     color: rgba(0, 0, 0,0.5);
     filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.6));
     transform: rotate(30deg);

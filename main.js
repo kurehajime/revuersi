@@ -144,7 +144,7 @@
             }
         }
         vm.stones=stones;
-        vm.turn=state.turn==1?"白のターンです":"黒のターンです"
+        vm.turn=state.turn==1?"White":"Black"
         vm.white_score=('00' + white).slice(-2);
         vm.black_score=('00' + black).slice(-2);
         vm.wait=(state.turn==-1);
