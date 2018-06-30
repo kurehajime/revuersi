@@ -132,16 +132,16 @@
 .stone{
     transition: all ease-in-out 0.8s;
     stroke-width: 5px;
-    fill: rgba(0, 0, 0,0);
+    fill: rgb(0, 0, 0);
     display: none;
 }
 .white{
-    fill: rgba(255,255,255);
-    stroke: rgba(222,222,222);
+    fill: rgb(255,255,255);
+    stroke: rgb(222,222,222);
     display: inline;
 }
 .black{
-    fill: rgba(0,0,0);
-    stroke: rgba(33,33,33);
+    fill: rgb(0,0,0);
+    stroke: rgb(33,33,33);
     display: inline;
 }
