@@ -21,13 +21,7 @@
             0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0,
         ],
-        mode: 0,
         turn: 1,
-        revision: 0,
-        selected: {
-            name: "",
-            value: 0
-        }
     };
 
     Vue.component('stone', {
@@ -100,21 +94,9 @@
                 turn:1,
                 white_score:0,
                 black_score:0,
+                wait:false,
             }
         });
-        let key=0;
-        for(let x=0;x<COL;x++){
-          for(let y=0;y<COL;y++){
-            let stone={
-              id:key,
-              x:x,
-              y:y,
-              state:1,
-              };
-            vm.stones.push(stone);
-            key++;
-          }
-        }
 
         state = init_state;
         render(state);
@@ -133,7 +115,7 @@
                 state.turn = -1 * state.turn;
                 state.revision += 1;
                 render(state);
-            }, 2000);
+            }, 1000);
 
         }
     }
@@ -165,5 +147,6 @@
         vm.turn=state.turn==1?"白のターンです":"黒のターンです"
         vm.white_score=('00' + white).slice(-2);
         vm.black_score=('00' + black).slice(-2);
+        vm.wait=(state.turn==-1);
     }
 })((this || 0).self || global);

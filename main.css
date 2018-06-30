@@ -10,8 +10,7 @@
     background-clip: border-box;
     background-size: 50px 50px;
 }
-
-#board {
+#box{
     position: absolute;
     top: 0px;
     right: 0px;
@@ -21,7 +20,12 @@
     width: 500px;
     height: 500px;
     display: flex;
-	flex-direction: row;
+    flex-direction: row;
+    background-color: black;
+    filter: drop-shadow(15px 15px 15px rgba(0,0,0,0.5));
+}
+
+#board {
     animation: huerotator 20s infinite alternate;
 }
 @keyframes huerotator {
@@ -32,6 +36,9 @@
         filter: hue-rotate(360deg);
     }
 }
+.wait{
+    cursor:wait;
+}
 #title{
     position: absolute;
     top: 0%;
@@ -41,7 +48,7 @@
     z-index: -1;
     font-weight: 900;
     font-family: 'Teko', sans-serif;
-    color: rgb(0, 0, 0,0.1);
+    color: rgb(0, 0, 0,0.2);
 }
 
 #turn{
@@ -89,7 +96,7 @@
 }
 .cell{
     fill: seagreen;
-    stroke: rgb(255, 255, 255,0.07);;
+    stroke: rgb(255, 255, 255,0.07);
     stroke-width: 1px;
 }
 .cell:hover{
@@ -112,6 +119,14 @@
 
 .canPut{
     display: inline;
+    animation: buru .1s  infinite;
+}
+@keyframes buru {
+    0% {transform: translate(0px, 0px) rotateZ(0deg)}
+    25% {transform: translate(2px, 2px) rotateZ(0deg)}
+    50% {transform: translate(0px, 2px) rotateZ(0deg)}
+    75% {transform: translate(2px, 0px) rotateZ(0deg)}
+    100% {transform: translate(0px, 0px) rotateZ(0deg)}
 }
 .stone{
     transition: all ease-in-out 0.8s;

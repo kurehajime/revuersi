@@ -14,12 +14,15 @@
 <body>
   <canvas id="back"></canvas>
   <div id="app">
-      <div id="title">Re:vuersi</div>
-    <div id="board">
-        <svg viewbox="0 0 500 500" width="500" height="500">
-            <stone :stone="stone" :key="stone.id" v-for="stone in stones" ></stone>
-          </svg>
-    </div>
+    <div id="title">Re:vuersi</div>
+    <span id="box">
+      <div id="board" 
+        v-bind:class="{wait:this.wait}">
+          <svg viewbox="0 0 500 500" width="500" height="500">
+              <stone :stone="stone" :key="stone.id" v-for="stone in stones" ></stone>
+            </svg>
+      </div>
+    </span>
     <div id="turn">{{turn}}</div>
     <div id="score">
       white:{{white_score}}<br>
