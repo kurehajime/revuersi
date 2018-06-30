@@ -41,10 +41,10 @@
             stateClass: function () {
                 switch (this.stone.state) {
                     case 1:
-                        return "white";
+                        return "black";
                         break;
                     case -1:
-                        return "black";
+                        return "white";
                         break;
                     default:
                         return "";
@@ -137,14 +137,14 @@
               };
               stones.push(stone);
             if(state.map[i]==1){
-                white++;
+                black++;
             }
             if(state.map[i]==-1){
-                black++;
+                white++;
             }
         }
         vm.stones=stones;
-        vm.turn=state.turn==1?"White":"Black"
+        vm.turn=state.turn==1?"Black":"White"
         vm.white_score=('00' + white).slice(-2);
         vm.black_score=('00' + black).slice(-2);
         vm.wait=(state.turn==-1);
