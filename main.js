@@ -78,7 +78,8 @@
             :r="width/2.6" 
             :cx="(this.width/2)+calcX" 
             :cy="(this.width/2)+calcY"
-            v-bind:class="stateClass" 
+            v-bind:class="stateClass"
+            class="stone"
             />
         </g>
         `
@@ -122,7 +123,7 @@
                 state.turn = -1 * state.turn;
                 state.revision += 1;
                 render(state);
-            }, 1000);
+            }, 1200);
 
         }
     }

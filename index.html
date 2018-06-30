@@ -5,31 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>revuersi</title>
-  <style>
-    circle{
-    transition: all ease-in-out 0.6s;
-    stroke-width: 5px;
-    fill: rgb(0, 0, 0,0);
-    }
-    .cell{
-    fill: green;
-    stroke: seagreen;
-    stroke-width: 2px;
-    }
-    .white{
-    fill: rgb(255,255,255);;
-    stroke: rgb(222,222,222);;
-    }
-    .black{
-    fill: rgb(0,0,0);
-    stroke: rgb(33,33,33);
-    }
-  </style>
+  <link rel="stylesheet" href="main.css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="./ai.js"></script>
-  <script src="./game.js"></script>
+  <script src="./main.js"></script>
 </head>
 <body>
+  <canvas id="back"></canvas>
   <div id="app">
     <svg viewbox="0 0 500 500" width="500" height="500">
       <stone :stone="stone" :key="stone.id" v-for="stone in stones" ></stone>
