@@ -34,7 +34,7 @@
         props: ['stone'],
         data: function () {
             return {
-                width: 500 / 8
+                width: 500 / COL
             }
         },
         computed: {
@@ -78,8 +78,15 @@
             :r="width/2.6" 
             :cx="(this.width/2)+calcX" 
             :cy="(this.width/2)+calcY"
-            v-bind:class="stateClass"
+            v-bind:class="[stateClass]"
             class="stone"
+            />
+        <circle 
+            :r="width/5" 
+            :cx="(this.width/2)+calcX" 
+            :cy="(this.width/2)+calcY"
+            v-bind:class="{canPut:this.stone.canPut}"
+            class="mark"
             />
         </g>
         `
@@ -90,11 +97,12 @@
             el: "#app",
             data: {
                 stones: [],
+                turn:1,
             }
         });
         let key=0;
-        for(let x=0;x<8;x++){
-          for(let y=0;y<8;y++){
+        for(let x=0;x<COL;x++){
+          for(let y=0;y<COL;y++){
             let stone={
               id:key,
               x:x,
@@ -133,11 +141,13 @@
         for (let i = 0; i < state.map.length; i++) {
             let x = (i % COL) | 0;
             let y = (i / COL) | 0;
+            let canPut=Ai.canPut(state.map, i, state.turn) && state.turn==1;
             let stone={
               id:i,
               x:x,
               y:y,
               state:state.map[i],
+              canPut:canPut,
               };
               stones.push(stone);
         }
