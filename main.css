@@ -48,7 +48,8 @@
     z-index: -1;
     font-weight: 900;
     font-family: 'Teko', sans-serif;
-    color: rgb(0, 0, 0,0.2);
+    text-decoration: underline;
+    color: rgba(0, 0, 0,0.2);
 }
 
 #turn{
@@ -60,7 +61,7 @@
     z-index: -1;
     font-weight: 900;
     font-family: sans-serif;
-    color: rgb(0, 0, 0,0.5);
+    color: rgba(0, 0, 0,0.5);
     filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.6));
     transform: rotate(30deg);
     animation: rote 30s infinite alternate;
@@ -81,7 +82,7 @@
     z-index: -1;
     font-weight: 900;
     font-family: sans-serif;
-    color: rgb(0, 0, 0,0.5);
+    color: rgba(0, 0, 0,0.5);
     font-family: 'Teko', sans-serif;
     filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.6));
     animation: zoom 20s infinite alternate;
@@ -96,7 +97,7 @@
 }
 .cell{
     fill: seagreen;
-    stroke: rgb(255, 255, 255,0.07);
+    stroke: rgba(255, 255, 255,0.07);
     stroke-width: 1px;
 }
 .cell:hover{
@@ -114,7 +115,7 @@
 
 .mark{
     display: none;
-    fill: rgb(255, 255, 255,0.1);
+    fill: rgba(255, 255, 255,0.1);
 }
 
 .canPut{
@@ -131,16 +132,16 @@
 .stone{
     transition: all ease-in-out 0.8s;
     stroke-width: 5px;
-    fill: rgb(0, 0, 0,0);
+    fill: rgba(0, 0, 0,0);
     display: none;
 }
 .white{
-    fill: rgb(255,255,255);
-    stroke: rgb(222,222,222);
+    fill: rgba(255,255,255);
+    stroke: rgba(222,222,222);
     display: inline;
 }
 .black{
-    fill: rgb(0,0,0);
-    stroke: rgb(33,33,33);
+    fill: rgba(0,0,0);
+    stroke: rgba(33,33,33);
     display: inline;
 }
