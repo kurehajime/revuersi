@@ -66,6 +66,18 @@
     transform: rotate(30deg);
     animation: rote 30s infinite alternate;
 }
+
+#github{
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    margin: 20px;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: 'Teko', sans-serif;
+    color: rgba(0, 0, 0,0.05);
+}
+
 @keyframes rote {
     0% {
         transform: rotate(30deg);
