@@ -22,6 +22,7 @@
     display: flex;
     flex-direction: row;
     background-color: black;
+    z-index: 1;
     filter: drop-shadow(15px 15px 15px rgba(0,0,0,0.5));
 }
 
