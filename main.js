@@ -22,6 +22,7 @@
             0, 0, 0, 0, 0, 0, 0, 0,
         ],
         turn: 1,
+        winner:null,
     };
 
     Vue.component('stone', {
@@ -95,29 +96,56 @@
                 white_score:0,
                 black_score:0,
                 wait:false,
+                winner:null,
             }
         });
+        
 
-        state = init_state;
+        state = JSON.parse(JSON.stringify(init_state));
         render(state);
     }
 
     function mouseClick(selected) {
-        if (Ai.canPut(state.map, selected, state.turn) === true) {
-            state.map = Ai.putMap(state.map, selected, state.turn);
-            state.turn = -1 * state.turn;
-            state.revision += 1;
+        if(state.winner!=null){
+            state = JSON.parse(JSON.stringify(init_state));
             render(state);
-
-            setTimeout(function () {
-                let _number = Ai.thinkAI(state.map, state.turn, 6)[0];
-                state.map = Ai.putMap(state.map, _number, state.turn);
-                state.turn = -1 * state.turn;
-                state.revision += 1;
-                render(state);
-            }, 1000);
-
+            return;
         }
+        if(state.turn==-1){
+            return;
+        }
+        if (Ai.canPut(state.map, selected, state.turn) === false) {
+            return;
+        }
+        state.map = Ai.putMap(state.map, selected, state.turn);
+        state.turn = -1 * state.turn;
+        state.winner = checkWinner();//勝敗チェック
+        render(state);
+
+        if(state.winner==null){
+            setTimeout(function () {
+                while(true){
+                    if(Ai.canPutPlayer(state.map, state.turn)){
+                        let _number = Ai.thinkAI(state.map, state.turn, 6)[0];
+                        state.map = Ai.putMap(state.map, _number, state.turn);
+                    }
+                    state.turn = -1 * state.turn;    
+                    state.winner = checkWinner();//勝敗チェック
+                    render(state);
+                    if(state.winner!=null || Ai.canPutPlayer(state.map, state.turn)){
+                        return;
+                    }
+                    state.turn = -1 * state.turn;    
+                }
+            }, 1000);
+        }
+    }
+
+    function checkWinner(map){
+        if(!Ai.canPutAll(state.map)){
+            return Ai.calcWinner(state.map);
+        }
+        return null;
     }
 
     function render(state){
@@ -147,6 +175,20 @@
         vm.turn=state.turn==1?"Black":"White"
         vm.white_score=('00' + white).slice(-2);
         vm.black_score=('00' + black).slice(-2);
-        vm.wait=(state.turn==-1);
+        vm.wait=(state.turn==-1&&state.winner==null);
+        switch (state.winner) {
+            case 0:
+                vm.winner="Draw Game...";
+                break;
+            case 1:
+                vm.winner="Black wins!";
+                break;
+            case -1:
+                vm.winner="White wins!";
+                break;
+            default:
+                vm.winner="";
+                break;
+        }
     }
 })((this || 0).self || global);

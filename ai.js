@@ -9,6 +9,11 @@
     global.Ai.canPut = canPut;
     global.Ai.getNodeList = getNodeList;
     global.Ai.putMap = putMap;
+    global.Ai.canPutPlayer = canPutPlayer;
+    global.Ai.canPutAll = canPutAll;
+    global.Ai.calcWinner = calcWinner;
+
+    
 
 
 
@@ -75,6 +80,31 @@
         return false;
     }
 
+    function canPutPlayer(map, turn){
+        var _map = map.concat();
+        for (var i = 0; i < COLXCOL; i++) {
+            if(canPut(map, i, turn)==true){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function canPutAll(map){
+        var _map = map.concat();
+        for (var i = 0; i < COLXCOL; i++) {
+            if(canPut(map, i, 1)==true){
+                return true;
+            }
+        }
+        for (var i = 0; i < COLXCOL; i++) {
+            if(canPut(map, i, -1)==true){
+                return true;
+            }
+        }
+        return false;
+    }
+
     function getNodeList(map, turn) {
         var node_list = [];
         for (var i = 0; i < COLXCOL; i++) {
@@ -121,7 +151,7 @@
 
     function isEnd(map) {
         for (var i = 0; i < COLXCOL; i++) {
-            if (map[i] != 0) {
+            if (map[i] == 0) {
                 return false;
             }
         }
@@ -129,27 +159,30 @@
     }
 
     function getWinner(map) {
-        var score = 0;
         if (!isEnd(map)) {
             return 0;
         } else {
-            for (var i = 0; i < COLXCOL; i++) {
-                if (map[i] < 0) {
-                    score += -1;
-                } else if (map[i] > 0) {
-                    score += 1;
-                }
-            }
-            if (score > 0) {
-                return 1;
-            } else if (score < 0) {
-                return -1;
-            } else {
-                return 0;
-            }
+            return calcWinner(map);
         }
     }
 
+    function calcWinner(map){
+        var score = 0;
+        for (var i = 0; i < COLXCOL; i++) {
+            if (map[i] < 0) {
+                score += -1;
+            } else if (map[i] > 0) {
+                score += 1;
+            }
+        }
+        if (score > 0) {
+            return 1;
+        } else if (score < 0) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
     function deepThinkAllAB(map, turn, depth, a, b) {
         var best_score = turn * 999 * -1 | 0;
         var besthand;
